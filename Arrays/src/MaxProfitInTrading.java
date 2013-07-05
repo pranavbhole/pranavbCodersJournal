@@ -1,4 +1,8 @@
-
+/* Author: Pranav Bhole
+ * Student of  Student of MS in Computer Science (Fall 2012 - Spring 2014)
+ * The University of Texas at Dallas
+ * http://www.utdallas.edu/~pranav.bhole
+ * */
 public class MaxProfitInTrading {
 int sharePrices[]={130 , 40, 100, 200, 400, 91, 123, 341, 34, 900};
 

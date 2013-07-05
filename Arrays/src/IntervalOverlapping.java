@@ -1,4 +1,8 @@
-
+/* Author: Pranav Bhole
+ * Student of  Student of MS in Computer Science (Fall 2012 - Spring 2014)
+ * The University of Texas at Dallas
+ * http://www.utdallas.edu/~pranav.bhole
+ * */
 public class IntervalOverlapping {
 
 	int start[]={1, 3, 4, 6, 9, 10};

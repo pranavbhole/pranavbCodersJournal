@@ -1,4 +1,8 @@
-
+/* Author: Pranav Bhole
+ * Student of  Student of MS in Computer Science (Fall 2012 - Spring 2014)
+ * The University of Texas at Dallas
+ * http://www.utdallas.edu/~pranav.bhole
+ * */
 public class MaxRepeatingNumber {
 	int arr[] = {1, 2, 2, 2, 2, 2, 0, 0, 3, 8, 0, 0, 0, 3};
 
