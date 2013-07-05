@@ -25,7 +25,6 @@ public 	int m[][]={{1, 2, 3, 4, 5},
 			System.out.print(s[i].pop().intValue()+" ,");
 		System.out.println();
 	}
-	
 	}
 	
 	/**
