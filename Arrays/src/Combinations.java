@@ -13,8 +13,6 @@ if(count==r){
 	System.out.println();
 }
 else{
-
-	
 for(int i=start;i<a.length && temp.size()<=r;i++){
 	temp.add(count,new Integer(a[i]));
 	combinations(temp,i, count+1, r);
