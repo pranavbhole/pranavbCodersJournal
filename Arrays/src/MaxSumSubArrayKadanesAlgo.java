@@ -5,12 +5,11 @@
  * */
 public class MaxSumSubArrayKadanesAlgo {
 public int a[]={1,-3,4,5, 1 ,6, -1, 2,7, 3,  8, 9,-3, 6, -7};
-public int b[]={-2, 1, -3, 4, -1, 2, 1, -5, 4};
-void maxSumSubArray(int lower,int upper){
-int maxSum=Integer.MIN_VALUE;
 int maxStartIndex=0;
 int maxEndIndex=0;
+int maxSum=Integer.MIN_VALUE;
 
+int maxSumSubArray(int a[],int lower,int upper){
 int startIndex=0;
 int endIndex=0;
 int sum=0;
@@ -32,6 +31,7 @@ int sum=0;
 System.out.println("maxStartIndex="+maxStartIndex);
 System.out.println("maxEndIndex="+maxEndIndex);
 System.out.println("maxSum="+maxSum);
+return maxSum;
 }
  
 
@@ -41,6 +41,7 @@ System.out.println("maxSum="+maxSum);
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		MaxSumSubArrayKadanesAlgo algo=new MaxSumSubArrayKadanesAlgo();
-		algo.maxSumSubArray(0, algo.a.length);
+		 int b[]={-2, 1, -3, 4, -1, 2, 1, -5, 4};
+		algo.maxSumSubArray(b,0, b.length);
 	}
 }
