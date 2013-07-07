@@ -50,7 +50,6 @@ public class PanCakeSorting {
 	cakeSorting.print();
 	cakeSorting.sort();
 	cakeSorting.print();
-	
 		// TODO Auto-generated method stub
 	}
 
