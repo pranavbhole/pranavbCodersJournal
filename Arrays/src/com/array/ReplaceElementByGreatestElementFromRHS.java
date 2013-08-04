@@ -27,7 +27,7 @@ Stack<String> stackOfLeaders=new Stack<String>();
 	print();
 	}
 	
-	 void print() {
+	 void print(){
 			for(int i=0; i<a.length; i++)System.out.print(a[i]+" , ");
 			System.out.println("");
 			if(!stackOfLeaders.isEmpty())System.out.println("Leaders :");
