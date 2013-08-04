@@ -1,8 +1,5 @@
 package com.array;
 
-import java.sql.ResultSet;
-
-
 public class FourElementsAmoungSumToX {
 	public int a[];
 	public FourElementsAmoungSumToX() {
@@ -12,7 +9,7 @@ public class FourElementsAmoungSumToX {
 		print();
 	}
 	MergeSort.ReseltSet[] reseltSet;
-	void fourElementsAmoungSumToX(){
+	void fourElementsAmoungSumToX(int sum){
 		int resultCount=0;
 		reseltSet=new MergeSort.ReseltSet[(int)a.length*(a.length-1)/2];
 		for(int i=0; i<a.length-1; i++)
@@ -28,8 +25,16 @@ public class FourElementsAmoungSumToX {
 		sort.setSet(reseltSet);		
 		sort.mergeSort(0,reseltSet.length-1);
 		sort.print();
-	
-		
+		reseltSet=sort.getSet();
+		int i=0, j=reseltSet.length-1;
+		while(i<reseltSet.length && j>=0){
+			if(reseltSet[i].sum+reseltSet[j].sum == sum){
+				System.out.println("("+a[reseltSet[i].first]+","+a[reseltSet[i].second]+","+a[reseltSet[j].first]+","+a[reseltSet[j].second]+")");
+			break;	
+			}
+			else if(reseltSet[i].sum+reseltSet[j].sum > sum)j--;
+			else i++;
+		}
 	}
 	void print(){
 		for(int i=0; i<a.length; i++)System.out.print(" "+a[i]);
@@ -39,7 +44,7 @@ public class FourElementsAmoungSumToX {
 
 	public static void main(String[] args) {
 		FourElementsAmoungSumToX x=new FourElementsAmoungSumToX();
-		x.fourElementsAmoungSumToX();
+		x.fourElementsAmoungSumToX(200);
 	}
 
 } 
