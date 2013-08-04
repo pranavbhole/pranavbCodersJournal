@@ -1,9 +1,6 @@
 package com.array;
 
 
-
-
-
 public class MergeSort {
 	
 	ReseltSet set[];
@@ -35,7 +32,7 @@ public class MergeSort {
 			}while(i<=mid && j<=upper);
 			
 			for(int n=i; n<=mid; n++)temp[k++]=set[n];
-			System.out.println();for(iSystem.out.println();System.out.println();System.out.println();System.out.println();System.out.println();System.out.println();nt n=j; n<=upper; n++)temp[k++]=set[n];
+			for(int n=j; n<=upper; n++)temp[k++]=set[n];
 			
 			int count=0;
 			for(int t=lower; t<=upper; t++){
