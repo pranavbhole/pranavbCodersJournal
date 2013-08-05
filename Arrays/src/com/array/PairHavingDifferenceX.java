@@ -1,11 +1,17 @@
+/* Author: Pranav Bhole
+ * Student of  Student of MS in Computer Science (Fall 2012 - Spring 2014)
+ * The University of Texas at Dallas
+ * http://www.utdallas.edu/~pranav.bhole
+ * */
+
 package com.array;
 
 public class PairHavingDifferenceX {
-int a[];
+public int a[]={6 , 10 , 17 , 18 , 20 , 28 , 31 , 60 , 65 , 94};
 public PairHavingDifferenceX() {
-	a=new int[10];
-	for(int i=0; i<10; i++)
-		a[i]=(int)(Math.random()*100);
+//	a=new int[10];
+//	for(int i=0; i<10; i++)
+//		a[i]=(int)(Math.random()*100);
 	QuickSort quickSort=new QuickSort();
 	quickSort.setA(a);
 	quickSort.quickSort(0,a.length-1);
@@ -21,18 +27,20 @@ void printPairHavingDifferenceX(int x){
 	int startIndex;
 	startIndex=BinarySearchForUpperBound(x,0, a.length-1);
 	System.out.println("StartIndex="+startIndex);	
-	System.out.println("StartIndex="+BinarySearch(79,0,a.length-1));
 	
 	do{
 		int second=a[startIndex]-x;
 		int secondIndex=BinarySearch(second,0,a.length-1);
-		if(secondIndex==-1)
+		if(secondIndex==-1){
 			startIndex++;
+			System.out.println("secondIndex="+secondIndex+", Element "+second+" not found, thus looping up for next difference!");
+		}
 		else 
 			if(a[secondIndex]==second){
 			System.out.println(" ("+a[startIndex]+", "+a[secondIndex]+")");
 			break;
 			}		
+		
 	}
 	while(startIndex<a.length);
 }
@@ -68,7 +76,7 @@ int BinarySearchForUpperBound(int x, int lower, int upper){
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PairHavingDifferenceX differenceX=new PairHavingDifferenceX();
-		differenceX.printPairHavingDifferenceX(70);
+		differenceX.printPairHavingDifferenceX(21);
 
 	}
 

@@ -1,3 +1,8 @@
+/* Author: Pranav Bhole
+ * Student of  Student of MS in Computer Science (Fall 2012 - Spring 2014)
+ * The University of Texas at Dallas
+ * http://www.utdallas.edu/~pranav.bhole
+ * */
 package com.array;
 
 import java.util.Stack;
