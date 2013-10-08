@@ -1,0 +1,1 @@
+BinaryTree.d: ../BinaryTree.c
