@@ -37,12 +37,11 @@ Node* pop() {
 }
 
 Node * topMost() {
-if(size>0){
-return stack[top];
+	if (size > 0) {
+		return stack[top];
+	} else
+		return NULL ;
 }
-else return NULL;
-}
-
 
 bool isEmpty() {
 	if (size <= 0)
@@ -51,6 +50,10 @@ bool isEmpty() {
 		return false;
 }
 
-int sizeOfStack(){
-return size;
+int sizeOfStack() {
+	return size;
+}
+void initializeStack(){
+top = -1;
+size = 0;
 }

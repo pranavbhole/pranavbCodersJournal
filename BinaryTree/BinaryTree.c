@@ -8,23 +8,53 @@
 #include<stdbool.h>
 #include "Node.c"
 
+int numberOfLeafNodeRecursive(Node *root) {
+	if (root == NULL )
+		return 0;
+	if (root->left == NULL && root->right == NULL )
+		return 1;
+	else
+		return numberOfLeafNodeRecursive(root->left)
+				+ numberOfLeafNodeRecursive(root->right);
+}
 
-Node* insertInto(Node*, int);
-
-
+int numberOfLeafNodeNonRecursive(Node *root) {
+	if (root == NULL )
+		return 0;
+	int maxLeafs = 0;
+	push(root);
+	Node * prev = NULL;
+	while (!isEmpty()) {
+		Node * cur = topMost();
+		if (!prev || prev->left == cur || prev->right == cur) {
+			if (cur->left)
+				push(cur->left);
+			else if (cur->right)
+				push(cur->right);
+		} else if (cur->left == prev) {
+			if (cur->right)
+				push(cur->right);
+		} else {
+			if (cur->left == NULL && cur->right == NULL )
+				maxLeafs++;
+			pop();
+		}
+		prev = cur;
+	}
+	return maxLeafs;
+}
 
 int depthRecursive() {
-return 0;
+	return 0;
 }
 
 Node* insertInto(Node*, int);
 
-
-void buildBinaryTree(Node *root, int a[]) {
+void buildBinaryTree(Node *root, int a[], int num) {
 	if (a == NULL )
 		return;
 	int i;
-	for (i = 1; i < sizeof(a); i++) {
+	for (i = 1; i < num; i++) {
 		Node *temp = root;
 		Node *new = (Node *) malloc(sizeof(Node));
 		new->data = a[i];
@@ -44,15 +74,16 @@ void buildBinaryTree(Node *root, int a[]) {
 					break;
 				}
 				temp = temp->right;
-			}
+			} else
+				break;
 		}
 	}
 }
-void buildBinaryTreeRecursive(Node *root, int a[]) {
+void buildBinaryTreeRecursive(Node *root, int a[], int num) {
 	if (a == NULL )
 		return;
 	int i;
-	for (i = 1; i < sizeof(a); i++) {
+	for (i = 1; i < num; i++) {
 		if (!insertInto(root, a[i]))
 			printf(" Failed to Insert %d", a[i]);
 	}
@@ -80,14 +111,11 @@ void inorder(Node * root) {
 	inorder(root->left);
 	printf(" %d ", root->data);
 	inorder(root->right);
-
 }
-
 
 int maxDepthIterative(Node *root) {
 	if (!root)
 		return 0;
-
 	push(root);
 	int maxDepth = 0;
 	Node *prev = NULL;
@@ -111,16 +139,19 @@ int maxDepthIterative(Node *root) {
 	return maxDepth;
 }
 
-
-
 int main() {
-
-	int random[] = { 20, 1, 4, 5, 7, 32, 43, 10, 14, 4, 5 };
+	int random[] = { 20, 1, 4, 5, 7, 8, 32, 43, 10, 14, 21, 5 };
 	Node *root = NULL;
 	root = (Node *) malloc(sizeof(Node));
 	root->data = random[0];
 	root->left = NULL;
 	root->right = NULL;
-	buildBinaryTree(root, random);
+	buildBinaryTree(root, random, 12);
+//	buildBinaryTreeRecursive(root, random, 12);
 	inorder(root);
+	printf("\nnumberOfLeafNodeRecursive=%d", numberOfLeafNodeRecursive(root));
+	printf("\nMaxDepth=%d", maxDepthIterative(root));
+	initializeStack();
+	printf("\nnumberOfLeafNodeNonRecursive=%d",
+			numberOfLeafNodeNonRecursive(root));
 }
