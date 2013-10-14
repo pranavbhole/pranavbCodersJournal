@@ -44,16 +44,17 @@ int numberOfLeafNodeNonRecursive(Node *root) {
 	return maxLeafs;
 }
 
-int max(int a, int b, int c){
-int t=a>=b?a:b;
-	return t>=c?t:c;
+int max(int a, int b, int c) {
+	int t = a >= b ? a : b;
+	return t >= c ? t : c;
 }
 
-int totalNumberOfNodes(Node *root){
-if(root==NULL)return 0;
-int leftLP=totalNumberOfNodes(root->left);
-int rightLP=totalNumberOfNodes(root->right);
-return max(leftLP, rightLP, 1+leftLP+rightLP);
+int totalNumberOfNodes(Node *root) {
+	if (root == NULL )
+		return 0;
+	int leftLP = totalNumberOfNodes(root->left);
+	int rightLP = totalNumberOfNodes(root->right);
+	return max(leftLP, rightLP, 1 + leftLP + rightLP);
 }
 
 Node* insertInto(Node*, int);
@@ -121,15 +122,30 @@ void inorder(Node * root) {
 	inorder(root->right);
 }
 
-int max2(int a, int b){
-return a>=b?a:b;
+int longestPath(Node * root){
+if(root==NULL)return 0;
+int l=0,r=0;
+if(root->left)l=1+maxDepthIterative(root->left);
+if(root->right)r=1+maxDepthIterative(root->right);
+return max(r+l,longestPath(root->left),longestPath(root->right));
+}
+
+int max2(int a, int b) {
+	return a >= b ? a : b;
 }
 
 int maxDepth;
 int depthRecursive(Node *root, int c, bool flag) {
-	if(flag==true)maxDepth=-1;
-	if(root==NULL){ if(c>maxDepth){maxDepth=c;}return c;}
-	return max2(depthRecursive(root->left, c+1, false),depthRecursive(root->right, c+1, false));
+	if (flag == true)
+		maxDepth = -1;
+	if (root == NULL ) {
+		if (c > maxDepth) {
+			maxDepth = c;
+		}
+		return c;
+	}
+	return max2(depthRecursive(root->left, c + 1, false),
+			depthRecursive(root->right, c + 1, false));
 }
 
 int maxDepthIterative(Node *root) {
@@ -173,9 +189,9 @@ int main() {
 	initializeStack();
 	printf("\nnumberOfLeafNodeNonRecursive=%d",
 			numberOfLeafNodeNonRecursive(root));
-	printf("\ntotalNumberOfNodes=%d",
-			totalNumberOfNodes(root));
-	printf("\ndepthRecursive=%d",
-				depthRecursive(root, 0, true));
+	printf("\ntotalNumberOfNodes=%d", totalNumberOfNodes(root));
+	printf("\ndepthRecursive=%d", depthRecursive(root, 0, true));
+	printf("\n longestPath=%d", longestPath(root));
+	initializeQueue();
 
 }

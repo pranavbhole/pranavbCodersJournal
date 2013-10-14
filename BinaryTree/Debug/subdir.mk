@@ -6,16 +6,19 @@
 C_SRCS += \
 ../BinaryTree.c \
 ../Node.c \
+../Queue.c \
 ../Stack.c 
 
 OBJS += \
 ./BinaryTree.o \
 ./Node.o \
+./Queue.o \
 ./Stack.o 
 
 C_DEPS += \
 ./BinaryTree.d \
 ./Node.d \
+./Queue.d \
 ./Stack.d 
 
 
