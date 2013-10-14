@@ -12,9 +12,14 @@ bool push1(Node * item);
 Node* pop1();
 Node* insertInto(Node*, int);
 
+
+
 int depthRecursive() {
 return 0;
 }
+
+Node* insertInto(Node*, int);
+
 
 void buildBinaryTree(Node *root, int a[]) {
 	if (a == NULL )
@@ -67,6 +72,7 @@ Node* insertInto(Node *root, int item) {
 	if (root->data < item)
 		root->right = insertInto(root->right, item);
 	return root;
+
 }
 
 void inorder(Node * root) {
@@ -75,6 +81,7 @@ void inorder(Node * root) {
 	inorder(root->left);
 	printf(" %d ", root->data);
 	inorder(root->right);
+
 }
 
 /*
@@ -108,7 +115,8 @@ int maxDepthIterative(Node *root) {
 }
 */
 
-int main(){
+
+int main() {
 
 	int random[] = { 20, 1, 4, 5, 7, 32, 43, 10, 14, 4, 5 };
 	Node *root = NULL;
@@ -118,7 +126,9 @@ int main(){
 	root->right = NULL;
 	buildBinaryTree(root, random);
 	inorder(root);
+
 	push1(root);
 	Node *root1=pop1();
 	printf("root : %d", root1->data);
+
 }
