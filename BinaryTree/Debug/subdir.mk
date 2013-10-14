@@ -4,13 +4,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../BinaryTree.c 
+../BinaryTree.c \
+../Node.c \
+../Stack.c 
 
 OBJS += \
-./BinaryTree.o 
+./BinaryTree.o \
+./Node.o \
+./Stack.o 
 
 C_DEPS += \
-./BinaryTree.d 
+./BinaryTree.d \
+./Node.d \
+./Stack.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

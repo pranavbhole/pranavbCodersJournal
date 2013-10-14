@@ -1,1 +1,3 @@
-BinaryTree.d: ../BinaryTree.c
+BinaryTree.d: ../BinaryTree.c ../Node.c
+
+../Node.c:

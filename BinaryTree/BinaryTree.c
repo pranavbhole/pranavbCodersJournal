@@ -6,13 +6,15 @@
  */
 #include<stdio.h>
 #include<stdbool.h>
+#include "Node.c"
 
-typedef struct Node {
-	int data;
-	struct Node *left, *right;
-} Node;
-
+bool push1(Node * item);
+Node* pop1();
 Node* insertInto(Node*, int);
+
+int depthRecursive() {
+return 0;
+}
 
 void buildBinaryTree(Node *root, int a[]) {
 	if (a == NULL )
@@ -75,7 +77,39 @@ void inorder(Node * root) {
 	inorder(root->right);
 }
 
-int main() {
+/*
+
+int maxDepthIterative(Node *root) {
+	if (!root)
+		return 0;
+	stack<Node*> s;
+
+	s.push(root);
+	int maxDepth = 0;
+	Node *prev = NULL;
+	while (!s.empty()) {
+		Node *curr = s.top();
+		if (!prev || prev->left == curr || prev->right == curr) {
+			if (curr->left)
+				s.push(curr->left);
+			else if (curr->right)
+				s.push(curr->right);
+		} else if (curr->left == prev) {
+			if (curr->right)
+				s.push(curr->right);
+		} else {
+			s.pop();
+		}
+		prev = curr;
+		if (s.size() > maxDepth)
+			maxDepth = s.size();
+	}
+	return maxDepth;
+}
+*/
+
+int main(){
+
 	int random[] = { 20, 1, 4, 5, 7, 32, 43, 10, 14, 4, 5 };
 	Node *root = NULL;
 	root = (Node *) malloc(sizeof(Node));
@@ -84,4 +118,7 @@ int main() {
 	root->right = NULL;
 	buildBinaryTree(root, random);
 	inorder(root);
+	push1(root);
+	Node *root1=pop1();
+	printf("root : %d", root1->data);
 }
