@@ -8,8 +8,7 @@
 #include<stdbool.h>
 #include "Node.c"
 
-bool push1(Node * item);
-Node* pop1();
+
 Node* insertInto(Node*, int);
 
 
@@ -84,36 +83,34 @@ void inorder(Node * root) {
 
 }
 
-/*
 
 int maxDepthIterative(Node *root) {
 	if (!root)
 		return 0;
-	stack<Node*> s;
 
-	s.push(root);
+	push(root);
 	int maxDepth = 0;
 	Node *prev = NULL;
-	while (!s.empty()) {
-		Node *curr = s.top();
+	while (!isEmpty()) {
+		Node *curr = topMost();
 		if (!prev || prev->left == curr || prev->right == curr) {
 			if (curr->left)
-				s.push(curr->left);
+				push(curr->left);
 			else if (curr->right)
-				s.push(curr->right);
+				push(curr->right);
 		} else if (curr->left == prev) {
 			if (curr->right)
-				s.push(curr->right);
+				push(curr->right);
 		} else {
-			s.pop();
+			pop();
 		}
 		prev = curr;
-		if (s.size() > maxDepth)
-			maxDepth = s.size();
+		if (sizeOfStack() > maxDepth)
+			maxDepth = sizeOfStack();
 	}
 	return maxDepth;
 }
-*/
+
 
 
 int main() {
@@ -126,9 +123,4 @@ int main() {
 	root->right = NULL;
 	buildBinaryTree(root, random);
 	inorder(root);
-
-	push1(root);
-	Node *root1=pop1();
-	printf("root : %d", root1->data);
-
 }
