@@ -7,7 +7,7 @@
 #include<stdio.h>
 #include<stdbool.h>
 #include "Node.c"
-int MAXQUEUE = 5;
+int MAXQUEUE = 1000;
 int front=0, rear=0;
 int sizeQueue = 0;
 

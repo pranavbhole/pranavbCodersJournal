@@ -122,12 +122,15 @@ void inorder(Node * root) {
 	inorder(root->right);
 }
 
-int longestPath(Node * root){
-if(root==NULL)return 0;
-int l=0,r=0;
-if(root->left)l=1+maxDepthIterative(root->left);
-if(root->right)r=1+maxDepthIterative(root->right);
-return max(r+l,longestPath(root->left),longestPath(root->right));
+int longestPath(Node * root) {
+	if (root == NULL )
+		return 0;
+	int l = 0, r = 0;
+	if (root->left)
+		l = 1 + maxDepthIterative(root->left);
+	if (root->right)
+		r = 1 + maxDepthIterative(root->right);
+	return max(r + l, longestPath(root->left), longestPath(root->right));
 }
 
 int max2(int a, int b) {
@@ -174,14 +177,84 @@ int maxDepthIterative(Node *root) {
 	return maxDepth;
 }
 
+void levelByLevelTraversal(Node * root) {
+	if (root == NULL )
+		return;
+	queueUp(root);
+	int level = 0;
+	while (!isEmptyQueue()) {
+		Node * cur = removeFromQueue();
+		if (cur)
+			printf(" data=%d ", cur->data);
+		if (cur->left)
+			queueUp(cur->left);
+		if (cur->right)
+			queueUp(cur->right);
+	}
+}
+
+void postOrder(Node * root) {
+	if (root == NULL )
+		return;
+	postOrder(root->right);
+	printf(" %d ", root->data);
+	postOrder(root->left);
+}
+bool contains(Node * root, Node *child) {
+	if (root == NULL || child == NULL )
+		return false;
+	if (root == child)
+		return true;
+	while (root != child) {
+		return contains(root->left, child) || contains(root->right, child);
+	}
+}
+
+void inorderNonRecursive(Node *root) {
+	if (root == NULL )
+		return;
+	bool flag = true;
+	Node *current = root;
+	while (flag) {
+		if (current != NULL ) {
+			push(current);
+			current = current->left;
+		} else if (!isEmpty()) {
+			current = pop();
+			printf(" %d ", current->data);
+			current = current->right;
+		} else
+			flag = false;
+	}
+}
+
+void postOrderNonRecursive(Node *root) {
+	if (root == NULL )
+		return;
+	bool flag = true;
+	Node * current = root;
+	while (flag) {
+		if (current != NULL ) {
+			push(current);
+			current = current->right;
+		} else if (!isEmpty()) {
+			current = pop();
+			printf(" %d ", current->data);
+			current = current->left;
+		} else
+			flag = false;
+	}
+
+}
+
 int main() {
-	int random[] = { 20, 1, 4, 5, 7, 8, 32, 43, 10, 14, 21, 5 };
+	int random[] = { 10, 15, 5, 7, 12, 16, 4, 3 };
 	Node *root = NULL;
 	root = (Node *) malloc(sizeof(Node));
 	root->data = random[0];
 	root->left = NULL;
 	root->right = NULL;
-	buildBinaryTree(root, random, 12);
+	buildBinaryTree(root, random, 8);
 //	buildBinaryTreeRecursive(root, random, 12);
 	inorder(root);
 	printf("\nnumberOfLeafNodeRecursive=%d", numberOfLeafNodeRecursive(root));
@@ -191,7 +264,16 @@ int main() {
 			numberOfLeafNodeNonRecursive(root));
 	printf("\ntotalNumberOfNodes=%d", totalNumberOfNodes(root));
 	printf("\ndepthRecursive=%d", depthRecursive(root, 0, true));
-	printf("\n longestPath=%d", longestPath(root));
+	printf("\n longestPath=%d ", longestPath(root));
 	initializeQueue();
-
+	printf("\n Level by level traversal: ");
+	levelByLevelTraversal(root);
+	printf("\n PostOrder Recursive traversal: ");
+	postOrder(root);
+	initializeStack();
+	printf("\n InOrder Non-Recursive traversal: ");
+	inorderNonRecursive(root);
+	initializeStack();
+	printf("\n PostOrder Non-Recursive traversal: ");
+	postOrderNonRecursive(root);
 }
