@@ -5,18 +5,24 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../BinaryTree.c \
+../BinaryTreeReconstruction.c \
+../LongestPath.c \
 ../Node.c \
 ../Queue.c \
 ../Stack.c 
 
 OBJS += \
 ./BinaryTree.o \
+./BinaryTreeReconstruction.o \
+./LongestPath.o \
 ./Node.o \
 ./Queue.o \
 ./Stack.o 
 
 C_DEPS += \
 ./BinaryTree.d \
+./BinaryTreeReconstruction.d \
+./LongestPath.d \
 ./Node.d \
 ./Queue.d \
 ./Stack.d 

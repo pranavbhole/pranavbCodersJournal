@@ -122,16 +122,7 @@ void inorder(Node * root) {
 	inorder(root->right);
 }
 
-int longestPath(Node * root) {
-	if (root == NULL )
-		return 0;
-	int l = 0, r = 0;
-	if (root->left)
-		l = 1 + maxDepthIterative(root->left);
-	if (root->right)
-		r = 1 + maxDepthIterative(root->right);
-	return max(r + l, longestPath(root->left), longestPath(root->right));
-}
+
 
 int max2(int a, int b) {
 	return a >= b ? a : b;
@@ -247,6 +238,30 @@ void postOrderNonRecursive(Node *root) {
 
 }
 
+bool isBinaryTree(Node * root, int min, int max) {
+	if (root != NULL ) {
+		if (root->data > max || root->data < min)
+			return false;
+		else
+			return isBinaryTree(root->left, min, root->data)
+					&& isBinaryTree(root->right, root->data, max);
+	}
+	return true;
+}
+
+int leastCommonAncestor(Node * root, int first, int second) {
+	if (root != NULL ) {
+		if ((root->data >= first && root->data <= second)
+				|| (root->data <= first && root->data >= second))
+			return root->data;
+		else if (root->data > first && root->data > second)
+			return leastCommonAncestor(root->left, first, second);
+		else if (root->data < first && root->data < second)
+			return leastCommonAncestor(root->right, first, second);
+	}
+	return -1;
+}
+
 int main() {
 	int random[] = { 10, 15, 5, 7, 12, 16, 4, 3 };
 	Node *root = NULL;
@@ -276,4 +291,11 @@ int main() {
 	initializeStack();
 	printf("\n PostOrder Non-Recursive traversal: ");
 	postOrderNonRecursive(root);
+	printf("\n PostOrder Non-Recursive traversal: ");
+	printf("\n Is Binary Tree = %d ", isBinaryTree(root, 0, MAX_INT));
+	printf("\n Is Binary Tree = %d ", leastCommonAncestor(root, 3, 12));
+	Node *replica = buildTreeUsingPreNInOrder(0, 7);
+	initializeStack();
+	printf("\n InOrder Non-Recursive traversal of replica: ");
+	inorderNonRecursive(replica);
 }
